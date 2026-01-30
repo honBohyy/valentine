@@ -1,0 +1,148 @@
+* { box-sizing: border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: Arial, sans-serif;
+  overflow:hidden;
+
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("lilie.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* cute růžový background jen pro druhou stránku */
+#pageBby{
+  background:
+    radial-gradient(circle at 20% 10%, #ffffffaa, transparent 45%),
+    radial-gradient(circle at 80% 30%, #ffffffaa, transparent 50%),
+    radial-gradient(circle at 50% 80%, #ffffff88, transparent 55%),
+    linear-gradient(135deg, #ffdde1, #ee9ca7);
+}
+
+/* karta */
+.container{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.card{
+  width:min(650px, 92vw);
+  background: rgba(255,255,255,.88);
+  border-radius: 20px;
+  padding: 26px;
+  text-align:center;
+  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+  position: relative;
+  z-index: 10;
+}
+
+h1{ margin: 0 0 10px; font-size: 34px; }
+.sub{ margin: 0 0 20px; opacity: .85; }
+
+/* tlačítka vedle sebe */
+.btn-area{
+  display:flex;
+  gap: 18px;
+  justify-content:center;
+  margin-top: 15px;
+}
+
+.btn{
+  border:none;
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor:pointer;
+  min-width: 160px;
+}
+
+.btn-yes{
+  background:#22c55e;
+  color:white;
+  position: relative; /* je normálně ve flexu */
+}
+
+/* až po kliknutí se z něj stane “lítací” tlačítko */
+.btn-yes.floating{
+  position: fixed;
+  z-index: 50;
+}
+
+.btn-no{
+  background:#ef4444;
+  color:white;
+}
+
+.message{
+  margin-top: 16px;
+  min-height: 26px;
+  font-weight: bold;
+}
+
+/* “Tady bby” skoro neviditelný */
+.love-fixed{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 100;
+
+  background: rgba(17,24,39,0.35);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.25);
+
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: bold;
+  cursor: pointer;
+
+  opacity: 0.20;
+  backdrop-filter: blur(6px);
+  transition: opacity .15s ease;
+}
+
+.love-fixed:hover{
+  opacity: 0.75;
+}
+
+/* zpět odkaz na bby stránce */
+.back{
+  display:inline-block;
+  margin-top:18px;
+  text-decoration:none;
+  font-weight:bold;
+  padding:10px 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.08);
+  color:#111827;
+}
+
+/* srdíčka */
+#hearts{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart{
+  position:absolute;
+  top:-30px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  opacity: .9;
+}
+
+@keyframes fall{
+  to{
+    transform: translateY(110vh);
+    opacity: 0.2;
+  }
+}
