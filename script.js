@@ -82,6 +82,14 @@ function moveYesRandom(){
   yesBtn.style.top  = "120px";
 }
 
+// hudba se spustí po prvním kliknutí kdekoliv
+const music = document.getElementById("music");
+if(music){
+   document.addEventListener("click", () => {
+    music.play();
+  }, { once: true });
+}
+
 // YES: nejdřív je normálně ve flexu vedle NE.
 // Po kliknutí se přepne na floating + teleport.
 if(yesBtn){
@@ -110,5 +118,54 @@ if(noBtn){
 if(loveBtn){
   loveBtn.addEventListener("click", () => {
     window.location.href = "bby.html";
+  });
+}
+
+
+const confettiCanvas = document.getElementById("confetti");
+
+if(confettiCanvas){
+  const ctx = confettiCanvas.getContext("2d");
+
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+
+  let pieces = [];
+
+  // vytvoříme konfety částice
+  for(let i = 0; i < 120; i++){
+    pieces.push({
+      x: Math.random() * confettiCanvas.width,
+      y: Math.random() * confettiCanvas.height,
+      size: 6 + Math.random() * 25,
+      speed: 2 + Math.random() * 2,
+      emoji: Math.random() > 0.5 ? "🎉" : "💖"
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+
+    pieces.forEach(p => {
+      ctx.font = p.size + "px Arial";
+      ctx.fillText(p.emoji, p.x, p.y);
+
+      p.y += p.speed;
+
+      // když spadne dolů, vrátí se nahoru
+      if(p.y > confettiCanvas.height){
+        p.y = -20;
+        p.x = Math.random() * confettiCanvas.width;
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
   });
 }

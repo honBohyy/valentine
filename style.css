@@ -140,6 +140,14 @@ h1{ margin: 0 0 10px; font-size: 34px; }
   opacity: .9;
 }
 
+#confetti{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+
 @keyframes fall{
   to{
     transform: translateY(110vh);
